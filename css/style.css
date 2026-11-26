@@ -99,7 +99,7 @@ h1, h2, h3 { font-family: var(--display); text-transform: uppercase; font-weight
 .a3 { background: var(--volt); color: var(--black); }
 .a4 { background: #dcdcdc; color: var(--black); }
 .proj__body { padding: 24px 24px 28px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
-.proj__tag { font-size: .78rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .06em; }
+.proj__tag { font-size: .78rem; font-weight: 600; color: #c2370a; text-transform: uppercase; letter-spacing: .06em; }
 .proj h3 { font-size: 2rem; line-height: 1; }
 .proj p { color: #444; font-size: .96rem; flex: 1; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
