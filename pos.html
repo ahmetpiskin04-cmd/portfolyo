@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>Market Kasa Sistemi | Ahmet Eren Pişkin</title>
+  <meta name="description" content="Akrabamın marketi için bir yılda tek başıma geliştirdiğim barkodlu satış, stok ve gün sonu raporu programı. Windows 7 uyumlu, çevrimdışı çalışır.">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Market Kasa Sistemi | Ahmet Eren Pişkin">
+  <meta property="og:description" content="Akrabamın marketi için bir yılda tek başıma geliştirdiğim kasa programı.">
+  <meta name="theme-color" content="#ff4d12">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="detail" id="top">
+
+  <header class="nav">
+    <div class="container nav__inner">
+      <a href="index.html" class="nav__logo">AHMET EREN PİŞKİN</a>
+      <nav class="nav__links" aria-label="Ana menü">
+        <a href="index.html#projeler">← Tüm projeler</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section dhero">
+      <div class="container">
+        <p class="eyebrow">Proje · Masaüstü / Web</p>
+        <h1 class="dhero__title">Market Kasa Sistemi</h1>
+        <p class="dhero__lead">Akrabamın marketi için bir yılda, tek başıma geliştirdiğim satış programı. Barkodlu satış, stok takibi ve gün sonu raporu içeriyor. Marketteki eski Windows 7 bilgisayarda da çalışıyor.</p>
+        <ul class="chips dhero__chips" lang="en">
+          <li>HTML / CSS</li><li>JavaScript</li><li>Electron</li><li>Node.js</li><li>localStorage</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section--gray">
+      <div class="container">
+        <p class="eyebrow">Ekranlar</p>
+        <h2 class="section__title">Kasadan görüntüler</h2>
+        <p class="dnote">Görüntülerdeki ürünler ve satışlar örnek (kurgusal) veridir.</p>
+
+        <figure class="shot">
+          <img src="img/pos-satis.png" alt="Kasa satış ekranı: sepette beş ürün, toplam 387,50 TL" loading="lazy">
+          <figcaption><strong>Satış ekranı.</strong> Barkod okutulunca ürün sepete düşer. <code>3*barkod</code> yazarak adet girilebilir, F10 ile satış biter. Tüm işlemler klavye kısayollarıyla yapılabilir.</figcaption>
+        </figure>
+
+        <div class="shots">
+          <figure class="shot">
+            <img src="img/pos-rapor.png" alt="Gün sonu raporu: günlük toplam ciro ve satış listesi" loading="lazy">
+            <figcaption><strong>Gün sonu raporu.</strong> Günün cirosu, satılan içerik ve her satış için silme. Satış silme ve Z raporu PIN ister.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="img/pos-urunler.png" alt="Ürün veritabanı: arama, yedekleme ve ürün listesi" loading="lazy">
+            <figcaption><strong>Ürün veritabanı.</strong> Barkod veya isimle anında arama, etiket yazdırma, yedekleme ve geri yükleme.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <p class="eyebrow">Süreç</p>
+        <h2 class="section__title">Karşılaştığım zorluklar</h2>
+
+        <div class="cases">
+          <article class="case">
+            <h3>Windows 7 bilgisayar</h3>
+            <p>Programı önce Electron ile yaptım, ama marketteki Windows 7 bilgisayarda sorun çıkardı. Bunun üzerine tarayıcıda çalışan, kurulum gerektirmeyen ve tamamen çevrimdışı bir sürüme geçtim. Windows 7'de çalışan son Chrome sürümü 109'a göre yazdım. Yazı tipi, barkod kütüphanesi ve logo yerel olduğu için internet de gerekmiyor.</p>
+          </article>
+          <article class="case">
+            <h3>Eski bilgisayarda hız</h3>
+            <p>Kasanın kasiyeri bekletmemesi gerekiyor. Bulanıklık ve gölge animasyonu gibi ağır efektleri kaldırdım, satış geçmişini bellekte tuttum, raporda önce ilk 100 satırı gösterdim. Ekran 1024×768'den 1440×900'e kadar kendini sığdırıyor.</p>
+          </article>
+          <article class="case">
+            <h3>Veri kaybı olmaması</h3>
+            <p>Veriler tarayıcının yerel depolamasında duruyor. Bozuk bir kayıt uygulamayı çökertmesin diye okuma güvenli yapıldı; bozuk veri üzerine yazılmadan önce kopyası alınıyor. Bunun yanında tek tuşla tüm veriyi yedekleme ve geri yükleme var.</p>
+          </article>
+          <article class="case">
+            <h3>Tartılı ürünler</h3>
+            <p>Terazinin bastığı barkod ürün kodunu ve ağırlığı ya da doğrudan tutarı taşıyor. Kasa bunu çözüp tutarı hesaplıyor. Tanımsız bir barkod okutulursa uyarı sesi çalıyor ve ürünü tanıtma penceresi açılıyor.</p>
+          </article>
+          <article class="case">
+            <h3>Etiket yazdırma</h3>
+            <p>40×20 mm etiketlerde fiyat uzunluğuna göre otomatik küçülüyor, barkodun üstüne binmiyor. Terazi için fiyat listesi dışa aktarılabiliyor, ürünler toplu olarak içe aktarılabiliyor.</p>
+          </article>
+          <article class="case">
+            <h3>Güvenlik</h3>
+            <p>Satış silme ve gün sonu raporu PIN ile korunuyor. Beş hatalı denemeden sonra giriş 30 saniye kilitleniyor. Ekrana yazılan her dış kaynaklı metin (ürün adı, barkod) temizlenerek gösteriliyor.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact">
+      <div class="container">
+        <p class="eyebrow eyebrow--light">Diğer projeler</p>
+        <h2 class="contact__title">Devamı <span class="hl">ana sayfada.</span></h2>
+        <div class="contact__links">
+          <a class="pill pill--accent" href="index.html#projeler">Tüm projeler</a>
+          <a class="pill pill--dark pill--sm" href="index.html#iletisim">İletişim</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__row">
+      <span>© 2026 Ahmet Eren Pişkin</span>
+      <nav class="footer__links" aria-label="Alt bilgi">
+        <a href="index.html">Ana sayfa</a>
+        <a href="#top" class="footer__top">Yukarı çık ↑</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>
