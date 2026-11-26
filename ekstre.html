@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>Ekstre Avukatı | Ahmet Eren Pişkin</title>
+  <meta name="description" content="Banka ve kredi kartı ekstresini analiz eden uygulama. Kart, IBAN ve T.C. kimlik numaraları yapay zekâya gitmeden önce maskelenir. Next.js, TypeScript, Gemini; web, PWA ve Android.">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Ekstre Avukatı | Ahmet Eren Pişkin">
+  <meta property="og:description" content="Hassas verileri yapay zekâya göndermeden önce maskeleyen ekstre analiz uygulaması.">
+  <meta name="theme-color" content="#ff4d12">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="detail" id="top">
+
+  <header class="nav">
+    <div class="container nav__inner">
+      <a href="index.html" class="nav__logo">AHMET EREN PİŞKİN</a>
+      <nav class="nav__links" aria-label="Ana menü">
+        <a href="index.html#projeler">← Tüm projeler</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section dhero">
+      <div class="container">
+        <p class="eyebrow">Proje · Web / Yapay Zekâ / Android</p>
+        <h1 class="dhero__title">Ekstre Avukatı</h1>
+        <p class="dhero__lead">Kredi kartı veya banka ekstresini (PDF ya da CSV) yükleyip harcamaları analiz eden, gizli abonelikleri ve gereksiz banka kesintilerini yakalayan uygulama. Asıl tasarım sorusu şuydu: ekstrede kart numarası, IBAN ve T.C. kimlik numarası varken yapay zekâdan nasıl yararlanılır? Cevabım: hassas veriler yapay zekâya gitmeden önce maskelenir.</p>
+        <ul class="chips dhero__chips" lang="en">
+          <li>Next.js</li><li>TypeScript</li><li>Tailwind</li><li>Gemini API</li><li>PWA</li><li>Android (WebView)</li>
+        </ul>
+        <div class="dhero__actions">
+          <a class="pill pill--accent" href="ekstre-demo/">Canlı demoyu dene</a>
+          <a class="pill pill--dark" data-link="ekstreGithub" target="_blank" rel="noopener">Kaynak kodu (GitHub)</a>
+        </div>
+        <p class="dnote dnote--wide">Demo, uygulamanın sunucusuz sürümüdür: ekstre okuma, maskeleme ve tablolar tarayıcınızda çalışır, hiçbir dosya bir sunucuya gönderilmez. "Örnek Ekstre ile Dene" düğmesiyle kurgusal bir ekstre yükleyebilirsiniz. Yapay zekâ özellikleri için kendi Gemini anahtarınızı girmeniz gerekir; anahtar yalnızca tarayıcınızda saklanır.</p>
+      </div>
+    </section>
+
+    <section class="section section--gray">
+      <div class="container">
+        <p class="eyebrow">Ekranlar</p>
+        <h2 class="section__title">Uygulamadan görüntüler</h2>
+        <p class="dnote">Görüntülerdeki ekstre kurgusaldır (örnek banka, deneme kullanıcı). Yapay zekâ analizi bu görüntülerde kapalıydı; gösterilen her şey yerelde, kodla hesaplanıyor.</p>
+
+        <figure class="shot">
+          <img src="img/ekstre-panel.png" alt="Ekstre Avukatı paneli: toplam harcama, abonelik sayısı, en çok harcanan kategori ve tasarruf potansiyeli" loading="lazy">
+          <figcaption><strong>Panel.</strong> Toplam harcama, abonelikler, en çok harcanan kategori ve tasarruf potansiyeli tek ekranda. Üstteki rozet, ekstrede kaç hassas verinin maskelendiğini gösteriyor.</figcaption>
+        </figure>
+
+        <figure class="shot">
+          <img src="img/ekstre-maske.png" alt="Maskelenmiş ham metin önizlemesi: kart numarası yıldızlı, IBAN ve T.C. kimlik no GİZLİ_VERİ olarak değiştirilmiş" loading="lazy">
+          <figcaption><strong>Maskeleme kanıtı.</strong> Yüklenen ekstrenin yapay zekâya gidecek hâli kullanıcıya gösteriliyor: kart numarası <code>**** **** **** 1234</code>, IBAN ve T.C. kimlik no <code>[GİZLİ_VERİ]</code> oluyor.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <p class="eyebrow">Mimari</p>
+        <h2 class="section__title">Veri nasıl akıyor</h2>
+
+        <ol class="flow">
+          <li><strong>Yükle</strong><span>PDF (taranmış dahil) veya CSV, en fazla 10 MB.</span></li>
+          <li><strong>Metni çıkar</strong><span>PDF satırları, koordinatlardan yeniden kurulur. Taranmış PDF'te görsel okuma yalnızca kullanıcı onayıyla yapılır.</span></li>
+          <li><strong>Maskele</strong><span>Yapay zekâya hiçbir şey gitmeden önce hassas veriler değiştirilir.</span></li>
+          <li><strong>Ayrıştır ve hesapla</strong><span>Tutarlar, kategoriler, abonelikler ve banka kesintileri kodla bulunur.</span></li>
+          <li><strong>Yapay zekâ</strong><span>Yalnızca maskelenmiş veriyle işyeri adı düzeltme, bulgular ve tavsiye.</span></li>
+        </ol>
+
+        <div class="rules" role="table" aria-label="Maskeleme kuralları">
+          <div class="rules__row rules__row--head" role="row"><span role="columnheader">Veri</span><span role="columnheader">Yapay zekâya giden hâli</span></div>
+          <div class="rules__row" role="row"><span role="cell">16 haneli kart numarası</span><span role="cell"><code>**** **** **** 1234</code></span></div>
+          <div class="rules__row" role="row"><span role="cell">IBAN (TR + 24 hane)</span><span role="cell"><code>[GİZLİ_VERİ]</code></span></div>
+          <div class="rules__row" role="row"><span role="cell">T.C. kimlik no (11 hane)</span><span role="cell"><code>[GİZLİ_VERİ]</code></span></div>
+        </div>
+        <p class="dnote">Yüklenen dosya diske yazılmaz; yalnızca maskelenmiş sonuç tarayıcıya döner ve orada saklanır. Sunucu, istemciden gelen her işlemi ve sohbet sorusunu yeniden doğrulayıp maskeler. Maskeleme ve ayrıştırma birim testleriyle doğrulanıyor.</p>
+      </div>
+    </section>
+
+    <section class="section section--gray">
+      <div class="container">
+        <p class="eyebrow">Süreç</p>
+        <h2 class="section__title">Karşılaştığım zorluklar</h2>
+
+        <div class="cases">
+          <article class="case">
+            <h3>Yapay zekâya rakam hesaplatmamak</h3>
+            <p>Dil modelleri toplama ve yüzde hesabında hata yapabilir. Bu yüzden toplamlar, aylık değişimler ve tasarruf tutarları kodla hesaplanıyor. Yapay zekâ yalnızca işyeri adını ve (kural sözlüğünün tanımadığı durumlarda) kategoriyi değiştirebiliyor; tutar, tarih ve banka kesintisi tespiti kodda kalıyor.</p>
+          </article>
+          <article class="case">
+            <h3>Aynı marka, farklı adlar</h3>
+            <p>Ayrı ekstrelerin ayrı analizleri aynı markaya farklı ad verebiliyordu ("Disney+" ile "Disney setup"). Abonelik gruplama anahtarını işyeri adını temizleyen sabit bir kurala bağladım; bilinen markalarda ad da kuraldan geliyor.</p>
+          </article>
+          <article class="case">
+            <h3>Kısa anahtar kelimelerin yanlış eşleşmesi</h3>
+            <p>Dört harften kısa anahtar kelimeler başka kelimelerin içinde eşleşiyordu (BELBIM'in BIM sanılması gibi). Bu kelimeler artık yalnızca kelime başında eşleşiyor.</p>
+          </article>
+          <article class="case">
+            <h3>Birden fazla ekstre</h3>
+            <p>Birleştirilen ekstrelerin dönemleri örtüştüğünde işlemler ikiye katlanmasın diye birleştirme mantığı yazıldı. Önceki aya göre değişim, en çok artan kategoriler ve yeni abonelikler de kodla hesaplanıyor.</p>
+          </article>
+          <article class="case">
+            <h3>Dışa aktarma güvenliği</h3>
+            <p>Excel'de açılan CSV'ler formül enjeksiyonuna açık olabilir; dışa aktarılan hücreler buna karşı korunuyor. Dosya Excel için noktalı virgül, ondalık virgül ve BOM ile yazılıyor. Ayrıca yazdırılabilir bir rapor var.</p>
+          </article>
+          <article class="case">
+            <h3>Sunucusuz telefon sürümü</h3>
+            <p>Aynı arayüz ve mantık Android uygulamasında telefonun içinde çalışıyor; sunucu yok. Gemini anahtarını kullanıcı kendisi giriyor, uygulamaya gömülü değil. Uygulama yalnızca kendi adresine ve Gemini'ye bağlanabiliyor.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact">
+      <div class="container">
+        <p class="eyebrow eyebrow--light">Diğer projeler</p>
+        <h2 class="contact__title">Devamı <span class="hl">ana sayfada.</span></h2>
+        <div class="contact__links">
+          <a class="pill pill--accent" href="index.html#projeler">Tüm projeler</a>
+          <a class="pill pill--dark pill--sm" href="index.html#iletisim">İletişim</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__row">
+      <span>© 2026 Ahmet Eren Pişkin</span>
+      <nav class="footer__links" aria-label="Alt bilgi">
+        <a href="index.html">Ana sayfa</a>
+        <a href="#top" class="footer__top">Yukarı çık ↑</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
